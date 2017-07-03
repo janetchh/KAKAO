@@ -16,6 +16,10 @@
 	  	margin: auto;
 	    margin-bottom : 5px;
 	    width: 1500px;
+	    position:relative;z-index:2;
+	}
+	body{
+		position:relative;z-index:1;
 	}
 	
 	#mainTitle{
@@ -45,7 +49,6 @@
 		margin: 0 auto;
 		
 	}
-	
 </style>
 <style>
 .dropbtn {
