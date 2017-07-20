@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="kakao.bean.ProductBean"%>
+<%@page import="kakao.dao.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
@@ -17,8 +20,8 @@ div#outDiv {
 }
 
 div.maindiv {
-	margin: 50px 200px 50px 200px;
-	margin-bottom: 100px; 
+	margin: 10px 200px 10px 200px;
+	margin-bottom: 0px; 
 }
 
 div.gallery {
@@ -44,29 +47,102 @@ div.desc {
 }
 
 </style>
+<style>
+
+.topnav {
+  width: 1000px;
+  margin-left: 200px;
+  padding: 30px;
+  overflow: hidden;
+  background-color: white;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.topnav a:hover {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.topnav a.active {
+    background-color: #5bc0de;
+    color: white;
+}
+</style>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-
+		
+		
+		$("a#mini").click(function(){
+			$("a#mini").attr("class","active");
+			$("a#all").attr("class","");
+		});
 	});
 </script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-
-	<img alt="dollmain" src="/KAKAO2/img/dollmainFont.jpg" style="width: 100%; height: 100%;">
+	
+	
+	<%
+		request.setCharacterEncoding("EUC-KR");
+		ProductDao dao = new ProductDao();
+		List<ProductBean> list = null;
+		String subtype= request.getParameter("subtype");
+		if(subtype!=null){
+			list = dao.selectList(subtype);
+	%>
+	<!--타이틀IMG  -->
+	<img alt="dollmain" src="/KAKAO/img/<%=subtype%>.jpg" style="width: 100%; height: 80%;">
+	
+	<%
+		}else{
+			list = dao.selectAllList("doll");
+	%>
+	
+	<!--타이틀IMG  -->
+	<img alt="dollmain" src="/KAKAO/img/dollmainmod.jpg" style="width: 100%; height: 80%;">
+	
+	<%
+		}
+	%>
+	
+	<!--세부카테고리  -->
+	<div class="topnav">
+	  <a id="all" href="doll.jsp">전체</a>
+	  <a id="mini" href="doll.jsp?subtype=mini">미니인형</a>
+	  <a id="2535cm" href="doll.jsp?subtype=2535cm">25cm/35cm인형</a>
+	  <a id="big" href="doll.jsp?subtype=big">대형인형</a>
+	  <a id="keychain" href="doll.jsp?subtype=keychain">키체인인형</a>
+	</div>
+	
+   <h3 style="margin-left: 230px;">총 <%=list.size() %>개의 상품이 조회되었습니다.</h3>
+	
 	<div id="outDiv">
 		<div class="maindiv" align="center">
-				<c:forEach var="i" items="${productList}">
-						<div class="gallery" style="height: 100%;">
-							<a href="info.do?cmd=productInfo&prono=${i.prono}"> <img src="/KAKAO2/img/doll/25_35cm/${i.mainimg}" alt="${i.proname}" width="600" height="400" >
-							<label style="color: #316a7b; padding-top: 10px; padding-bottom: 5px;">${i.proname}</label><br>
-							<label style="color: #316a7b; padding-bottom: 5px;">${i.price}</label><br>
-							</a>
-							<a href="cartList.do?cmd=cartList&prono=${i.prono}"><button type="button" class="btn btn-info">장바구니</button></a>
-							<a href=""><button type="button" class="btn btn-info">주문하기</button></a>						
-						</div>
-				</c:forEach>
+			<%
+				for( ProductBean bean : list ){
+			%>
+				<div class="gallery" style="height: 100%;">
+					<a href="productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/doll/<%=bean.getMainimg() %>" width="600" height="400" >
+					<label style="color: #316a7b; font-size:15px;  padding-top: 10px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
+					<label style="color: #316a7b; font-size:15px; padding-bottom: 5px;"><%=bean.getPrice() %></label><br>
+					</a>
+					<a href="cartList.jsp?no=<%=bean.getProno()%>"><button type="button" class="btn btn-info">장바구니</button></a>
+					<a href=""><button type="button" class="btn btn-info">주문하기</button></a>						
+					</div>
+			<%
+				}
+			%>		
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />

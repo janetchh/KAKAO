@@ -29,8 +29,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	<img alt="cartList" src="/KAKAO2/img/loginmainFont.png" style="width: 100%; height: 100%;">
-	<form action="login.do?cmd=login" method="POST" id="loginFrm">
+	<img alt="cartList" src="/KAKAO/img/loginmainFont.png" style="width: 100%; height: 100%;">
+	<form action="main.jsp" method="POST" id="loginFrm">
 		<div class="mainDiv" align="center" style="margin: 30px auto; width: 500px; height: 500px; border: 1px solid #D5D5D5;">
 			<h1 style="padding: 30px;" align="center">KAKAO ·Î±×ÀÎ</h1>
 				<div class="input-group">

@@ -67,7 +67,7 @@ body {
 	background-color: white;
 	color: black;
 	padding: 16px;
-	font-size: 16px;
+	font-size: 22px;
 	border: none;
 	cursor: pointer;
 	font-weight: bold;
@@ -82,7 +82,7 @@ body {
 	display: none;
 	position: absolute;
 	background-color: #5bc0de;
-	min-width: 100px;
+	min-width: 120px;
 	/*  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1; */
 }
@@ -92,7 +92,8 @@ body {
 	padding: 12px 16px;
 	text-decoration: none;
 	display: block;
-	text-align: left;
+	text-align: center;
+	font-size: 20px;
 }
 
 .dropdown-content a:hover {
@@ -157,9 +158,12 @@ body {
 		<div class="dropdown">
 			<button class="dropbtn">카테고리</button>
 			<div class="dropdown-content">
-				<a href="doll.do?cmd=productList&job=doll">인형</a> <a href="#">리빙</a>
-				<a href="#">잡화</a> <a href="#">문구</a> <a href="#">생활테크</a> <a
-					href="#">푸드</a>
+				<a href="doll.jsp">인형</a> 
+				<a href="#">리빙</a>
+				<a href="#">잡화</a> 
+				<a href="#">문구</a> 
+				<a href="#">생활테크</a> 
+				<a href="#">푸드</a>
 			</div>
 		</div>
 		<div class="dropdown">

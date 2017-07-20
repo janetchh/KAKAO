@@ -3,11 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kakao.bean.ProductBean">
-	<select id="selectList" resultType="product">
-		SELECT * FROM PRODUCT WHERE SUBTYPE='25/35cm'
+	<select id="selectAllList" parameterType="java.lang.String" resultType="product">
+		SELECT * FROM PRODUCT WHERE TYPE=#{type}
+	</select>
+	<select id="selectList" parameterType="java.lang.String" resultType="product">
+		SELECT * FROM PRODUCT WHERE SUBTYPE=#{subtype}
 	</select>
 	<select id="selectOne" parameterType="java.lang.String" resultType="product" >
-		SELECT PRONO, PRONAME, PRICE, CHARACTER, TYPE, SUBTYPE, INFO, MAINIMG, DETAILIMG1, DETAILIMG2, DATAILIMG3, NOTICE 
+		SELECT PRONO, PRONAME, PRICE, CHARACTER, TYPE, SUBTYPE, INFO, MAINIMG, DETAILIMG1, DETAILIMG2, DETAILIMG3, NOTICE 
 		FROM PRODUCT 
 		WHERE PRONO=#{prono}
 	</select>

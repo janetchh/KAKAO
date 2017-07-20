@@ -10,7 +10,7 @@ public class ProductBean {
 	private String mainimg;
 	private String detailimg1;
 	private String detailimg2;
-	private String datailimg3;
+	private String detailimg3;
 	private String notice;
 	private String info;
 	private int count;
@@ -68,11 +68,11 @@ public class ProductBean {
 	public void setDetailimg2(String detailimg2) {
 		this.detailimg2 = detailimg2;
 	}
-	public String getDatailimg3() {
-		return datailimg3;
+	public String getDetailimg3() {
+		return detailimg3;
 	}
-	public void setDatailimg3(String datailimg3) {
-		this.datailimg3 = datailimg3;
+	public void setDetailimg3(String detailimg3) {
+		this.detailimg3 = detailimg3;
 	}
 	public String getNotice() {
 		return notice;
@@ -96,7 +96,7 @@ public class ProductBean {
 		super();
 	}
 	public ProductBean(String prono, String proname, int price, String character, String type, String subtype,
-			String mainimg, String detailimg1, String detailimg2, String datailimg3, String notice, String info,
+			String mainimg, String detailimg1, String detailimg2, String detailimg3, String notice, String info,
 			int count) {
 		super();
 		this.prono = prono;
@@ -108,7 +108,7 @@ public class ProductBean {
 		this.mainimg = mainimg;
 		this.detailimg1 = detailimg1;
 		this.detailimg2 = detailimg2;
-		this.datailimg3 = datailimg3;
+		this.detailimg3 = detailimg3;
 		this.notice = notice;
 		this.info = info;
 		this.count = count;
@@ -117,7 +117,7 @@ public class ProductBean {
 	public String toString() {
 		return "ProductBean [prono=" + prono + ", proname=" + proname + ", price=" + price + ", character=" + character
 				+ ", type=" + type + ", subtype=" + subtype + ", mainimg=" + mainimg + ", detailimg1=" + detailimg1
-				+ ", detailimg2=" + detailimg2 + ", datailimg3=" + datailimg3 + ", notice=" + notice + ", info=" + info
+				+ ", detailimg2=" + detailimg2 + ", detailimg3=" + detailimg3 + ", notice=" + notice + ", info=" + info
 				+ ", count=" + count + "]";
 	}
 	
