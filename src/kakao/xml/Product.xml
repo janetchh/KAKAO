@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kakao.bean.ProductBean">
+	<select id="selectList" resultType="product">
+		SELECT * FROM PRODUCT WHERE SUBTYPE='25/35cm'
+	</select>
+	<select id="selectOne" parameterType="java.lang.String" resultType="product" >
+		SELECT PRONO, PRONAME, PRICE, CHARACTER, TYPE, SUBTYPE, INFO, MAINIMG, DETAILIMG1, DETAILIMG2, DATAILIMG3, NOTICE 
+		FROM PRODUCT 
+		WHERE PRONO=#{prono}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

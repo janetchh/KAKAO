@@ -17,20 +17,30 @@
 	body{
 		padding-bottom: 0px;
 	}
+	
+	div.bannerContainer img{
+		padding: 5px;
+	}
+	div.characterContainer img{
+		padding: 10px;
+		width: 300px; 
+		height: 150px;
+	}
+	
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	<%
-		/* KakaoDao dao = new KakaoDao();
+	<%-- <%
+		KakaoDao dao = new KakaoDao();
 		List<KakaoBean> list = dao.selectProduct();
 		for(int i = 0;i<list.size();i++){
 			KakaoBean bean = list.get(i);
 			out.print(bean);
-		} */
-	%>
+		} 
+	%> --%>
 	<div class="mid_contents">
-		<div class="container">
+		<div class="slideContainer" style="width: 100%;">
 		  <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		    <!-- Indicators -->
 		    <ol class="carousel-indicators">
@@ -38,19 +48,19 @@
 		      <li data-target="#myCarousel" data-slide-to="1"></li>
 		      <li data-target="#myCarousel" data-slide-to="2"></li>
 		    </ol>
-		
 		    <!-- Wrapper for slides -->
 		    <div class="carousel-inner">
 		      <div class="item active">
-		        <img src="/KAKAO/img/main1.JPG" alt="main1" style="width:100%; height: 100% ">
+		        <img src="/KAKAO/img/main1.jpg" alt="main1" style="width:100%; height: 50% ">
 		      </div>
 		
 		      <div class="item">
-		        <img src="/KAKAO/img/main2.JPG" alt="main2" style="width:100%; height: 100% ">
+		        <img src="/KAKAO/img/main2.jpg" alt="main2" style="width:100%; height: 50%">
 		      </div>
 		    
-		      <div class="item">
-		        <img src="/KAKAO/img/main3.JPG" alt="main3" style="width:100%; height: 100% ">
+		      <div class
+		      ="item">
+		        <img src="/KAKAO/img/main3.jpg" alt="main3" style="width:100%; height: 50% ">
 		      </div>
 		    </div>
 		
@@ -65,6 +75,26 @@
 		    </a>
 		  </div>
 		</div>
+		
+		<div class="bannerContainer" style="padding: 20px; margin: 0 auto; width: 1300px; "  align="center" >
+			<img src="/KAKAO/img/banner/20170612_CbannerA_tmoney_W.jpg" width="400px" height="400px">
+			<img src="/KAKAO/img/banner/20170621_Cbanner_hood_W.jpg" width="400px" height="400px">
+			<img src="/KAKAO/img/banner/20170609_Cbanner_icecup_W.jpg" width="400px" height="400px">
+			<img src="/KAKAO/img/banner/20170626_Cbanner_miniset_W.jpg" width="400px" height="400px">
+			<img src="/KAKAO/img/banner/20170626_CbannerW_globalgift_W.jpg" width="800px" height="400px">
+		</div>
+		
+		<div class="characterContainer" style="padding: 20px; margin: 0 auto; width: 1300px; "  align="center"> 
+			<img src="/KAKAO/img/character/ico_character_apeach.png">
+			<img src="/KAKAO/img/character/ico_character_con.png">
+			<img src="/KAKAO/img/character/ico_character_frodo.png">
+			<img src="/KAKAO/img/character/ico_character_jayg.png">
+			<img src="/KAKAO/img/character/ico_character_muzi.png">
+			<img src="/KAKAO/img/character/ico_character_neo.png" >
+			<img src="/KAKAO/img/character/ico_character_ryan.png">
+			<img src="/KAKAO/img/character/ico_character_tube.png">
+		</div>
+		
 	</div>	
 	<jsp:include page="footer.jsp"/>
 </body>
