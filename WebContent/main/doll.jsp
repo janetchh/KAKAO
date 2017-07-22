@@ -70,6 +70,7 @@ div.desc {
 .topnav a:hover {
   background-color: #5bc0de;
   color: white;
+  text-decoration: none;
 }
 
 .topnav a.active {
@@ -81,11 +82,21 @@ div.desc {
 <script type="text/javascript">
 	$(function() {
 		
-		
-		$("a#mini").click(function(){
+		//세부타입 효과
+		if($("input#subtype").val()=="mini"){
+			$("div.topnav a").attr("class",""); 
 			$("a#mini").attr("class","active");
-			$("a#all").attr("class","");
-		});
+		}else if($("input#subtype").val()=="2535cm"){
+			$("div.topnav a").attr("class",""); 
+			$("a#2535cm").attr("class","active");
+		}else if($("input#subtype").val()=="big"){
+			$("div.topnav a").attr("class",""); 
+			$("a#big").attr("class","active");
+		}else if($("input#subtype").val()=="keychain"){
+			$("div.topnav a").attr("class",""); 
+			$("a#keychain").attr("class","active");
+		}
+		
 	});
 </script>
 </head>
@@ -118,11 +129,12 @@ div.desc {
 	
 	<!--세부카테고리  -->
 	<div class="topnav">
-	  <a id="all" href="doll.jsp">전체</a>
+	  <a id="all" class="active" href="doll.jsp">전체</a>
 	  <a id="mini" href="doll.jsp?subtype=mini">미니인형</a>
 	  <a id="2535cm" href="doll.jsp?subtype=2535cm">25cm/35cm인형</a>
 	  <a id="big" href="doll.jsp?subtype=big">대형인형</a>
 	  <a id="keychain" href="doll.jsp?subtype=keychain">키체인인형</a>
+	  <input type="hidden"  id="subtype" value="<%=subtype%>">
 	</div>
 	
    <h3 style="margin-left: 230px;">총 <%=list.size() %>개의 상품이 조회되었습니다.</h3>
@@ -134,10 +146,11 @@ div.desc {
 			%>
 				<div class="gallery" style="height: 100%;">
 					<a href="productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/doll/<%=bean.getMainimg() %>" width="600" height="400" >
-					<label style="color: #316a7b; font-size:15px;  padding-top: 10px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
-					<label style="color: #316a7b; font-size:15px; padding-bottom: 5px;"><%=bean.getPrice() %></label><br>
+					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
+					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=bean.getPrice() %></label><br>
 					</a>
-					<a href="cartList.jsp?no=<%=bean.getProno()%>"><button type="button" class="btn btn-info">장바구니</button></a>
+					<a href=""><button type="button" class="btn btn-info">찜하기</button></a>		
+					<a href="cartList.jsp?prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info">장바구니</button></a>
 					<a href=""><button type="button" class="btn btn-info">주문하기</button></a>						
 					</div>
 			<%
