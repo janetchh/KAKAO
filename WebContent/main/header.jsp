@@ -170,9 +170,12 @@ body {
 		<div class="dropdown">
 			<button class="dropbtn">마이페이지</button>
 			<div class="dropdown-content">
-				<a href="login.jsp">로그인</a> <a href="cartList.do?cmd=cartList">장바구니</a>
-				<a href="#">주문내역</a> <a href="#">찜</a> <a href="#">취소및교환</a> <a
-					href="#">1:1문의</a> <a href="login.jsp">로그아웃</a>
+				<a href="login.jsp">로그인</a> 
+				<a href="#">장바구니</a>
+				<a href="#">주문내역</a> <a href="#">찜</a> 
+				<a href="#">취소및교환</a> 
+				<a href="#">1:1문의</a> 
+				<a href="login.jsp">로그아웃</a>
 			</div>
 		</div>
 		<div class="dropdown">

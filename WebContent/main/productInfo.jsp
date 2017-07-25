@@ -55,6 +55,7 @@
 							  <button type="button" id="" class="btn btn-info">찜</button>
 							  <button type="button" id="cart" class="btn btn-info">장바구니</button>
 							  <button type="button" class="btn btn-info">주문하기</button>
+							  <input type="hidden" name="job" value="add">
 							</div>
 						</div>
 					</form>
