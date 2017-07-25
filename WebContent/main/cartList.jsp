@@ -14,20 +14,23 @@
 <script type="text/javascript">
   $(function(){
 	  var price=0;
-	  $("input.price").each(function(){
-		  $(this).siblings(".totalPrice").val($(this).val()*$(this).siblings(".count").val());
+	  var onePrice=0;
+	  $("label.onePrice").each(function(){
+		  $(this).siblings(".totalPrice").val($(this).text())
 		  price+=eval($(this).siblings(".totalPrice").val());
+		  $("label.cartTotalPrice").text(price);
 	  });
 	  
 	  $("button#mod").click(function(){
-		  //금액부분
-		  $("button#mod").parents().prev().prev().children().eq(0).text('1');
-		  //수량부분
-		  //alert($("button#mod").parents().prev().children().eq(0).find("input#count").val());
-		 /*  price-=$(this).siblings(".totalPrice").val();
-		  $(this).siblings(".totalPrice").val($(this).siblings(".price").val()*$(this).siblings(".count").val());
+		  
+		  //미완성
+ 		  alert(Number($(this).parents().prev().prev().children().eq(0).text($(this).parents().prev().children().eq(0).find("input#count").val()*$(this).siblings(".price").val())));
+ 		  
+		  price-=Number($(this).siblings(".totalPrice").val());
+		  alert(price);
+		  $(this).siblings(".totalPrice").val($(this).parents().prev().prev().children().eq(0).text());
 		  price+=eval($(this).siblings(".totalPrice").val());
-		  $("label.cartTotalPrice").text(price); */
+		  $("label.cartTotalPrice").text(price);
 	  }); 
 	  
 	  $("label.cartTotalPrice").text(price);
@@ -92,15 +95,16 @@
     		<a><img src="/KAKAO/img/doll/<%=productBean.getSubtype()%>/<%=productBean.getMainimg() %>" width="200" height="200" style="padding-right: 20px;"></a></td>
     		<td style="width: 520px;"> <label style="font-size: 20pt; font-weight:normal;  padding-left: 30px; "> <%=productBean.getProname() %> </label></td>
 	    	<td style="font-size: 13pt; font-weight:normal;"> 
-	    		금액 : <label class=" " style="font-size: 13pt; font-weight:normal; margin-right: 10px;"><%=productBean.getPrice()*productBean.getCount() %></label>원</td>
+	    		금액 : <label class="onePrice" style="font-size: 13pt; font-weight:normal; margin-right: 10px;"><%=productBean.getPrice()*productBean.getCount() %></label>원
+	    			<input type="hidden" class="totalPrice" ></td>
 	    	<td><label class="countLabel" style="font-size: 13pt; font-weight:normal; margin-left:10px; margin-right: 10px;"> 
 	    			수량 : <input type="number" id="count" value="<%=productBean.getCount() %>" step="1" min="1" max="10" style="text-align: center;  width: 70px;"></label> </td>
 	    				
 	    	<!--삭제누르면 이전 수량값으로 되돌아오는 것 수정하기 -->
 	    	<td><button type="button" id="mod" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">변경</button>
 	    		<input type="hidden" class="price" value="<%=productBean.getPrice()%>"> </td>
+		    	<input type="hidden" class="totalPrice" >
 	    	<td><a href="deleteCart.do?cmd=deleteCart&prono=${i.prono}"><button type="button" class="btn btn-info" style="margin-bottom: 5px;  margin-right: 10px;">삭제</button></a></td>
-	    	<input type="hidden" class="totalPrice" > 
     		</tr>
     	</table>
     	</div>

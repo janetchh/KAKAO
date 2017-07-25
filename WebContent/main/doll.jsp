@@ -149,7 +149,7 @@ div.desc {
 					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=bean.getPrice() %></label><br>
 					</a>
 					<a href=""><button type="button" class="btn btn-info">찜하기</button></a>		
-					<a href="cartList.jsp?prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info">장바구니</button></a>
+					<a href="cartList.jsp?prono=<%=bean.getProno()%>&count=1"><button type="button" class="btn btn-info">장바구니</button></a>
 					<a href=""><button type="button" class="btn btn-info">주문하기</button></a>						
 					</div>
 			<%
