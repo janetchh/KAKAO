@@ -127,6 +127,7 @@ body {
 </script>
 <header>
 	<%
+		response.setCharacterEncoding("UTF-8");
 		String id = request.getParameter("id");
 	%>
 	<!--로그인성공시  -->

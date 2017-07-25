@@ -2,8 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="kakao.dao.ProductDao"%>
 <%@page import="kakao.bean.ProductBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,9 +19,11 @@
 		  price+=eval($(this).siblings(".totalPrice").val());
 	  });
 	  
-	  
 	  $("button#mod").click(function(){
-		  alert($("button#mod").parents().prev().prev().find("label.priceLabel").text());
+		  //ê¸ˆì•¡ë¶€ë¶„
+		  $("button#mod").parents().prev().prev().children().eq(0).text('1');
+		  //ìˆ˜ëŸ‰ë¶€ë¶„
+		  //alert($("button#mod").parents().prev().children().eq(0).find("input#count").val());
 		 /*  price-=$(this).siblings(".totalPrice").val();
 		  $(this).siblings(".totalPrice").val($(this).siblings(".price").val()*$(this).siblings(".count").val());
 		  price+=eval($(this).siblings(".totalPrice").val());
@@ -39,6 +40,7 @@
 </head>
 <body>
 	<%
+		response.setCharacterEncoding("UTF-8");
 		String prono = request.getParameter("prono");
 		int count = Integer.parseInt(request.getParameter("count"));	
 	
@@ -76,7 +78,7 @@
   <jsp:include page="header.jsp" />
   	<img alt="cartList" src="/KAKAO/img/cartFont.jpg" style="width: 100%; height: 100%;">
      <div class="wrap">
-    	<h2  align="left" style="margin:50px 0 50px 380px ;">ÃÑ <%=cartList.size() %>°³ÀÇ »óÇ°ÀÌ Á¶È¸µÇ¾ú½À´Ï´Ù.</h2>
+    	<h2  align="left" style="margin:50px 0 50px 380px ;">ì´ <%=cartList.size() %>ê°œì˜ ìƒí’ˆì´ ì¡°íšŒë˜ì—ˆìŠµë‹ˆë‹¤.</h2>
     	
     	<%
     		for(ProductBean productBean : cartList){
@@ -89,14 +91,16 @@
     		<td>
     		<a><img src="/KAKAO/img/doll/<%=productBean.getSubtype()%>/<%=productBean.getMainimg() %>" width="200" height="200" style="padding-right: 20px;"></a></td>
     		<td style="width: 520px;"> <label style="font-size: 20pt; font-weight:normal;  padding-left: 30px; "> <%=productBean.getProname() %> </label></td>
-	    	<td> ±İ¾× : <label class=" " style="font-size: 13pt; font-weight:normal; margin-right: 10px;"><%=productBean.getPrice()*productBean.getCount() %></label>¿ø
-	    	<td><label class="countLabel" style="font-size: 13pt; font-weight:normal; margin-right: 10px;"> 
-	    			¼ö·® : <input type="number" id="count" value="<%=productBean.getCount() %>" step="1" min="1" max="10" style="text-align: center;  width: 70px;"></label> </td>
-	    		<input type="hidden" class="price" value="<%=productBean.getPrice()%>">
-	    		<input type="hidden" class="totalPrice" > 
-	    	<!--»èÁ¦´©¸£¸é ÀÌÀü ¼ö·®°ªÀ¸·Î µÇµ¹¾Æ¿À´Â °Í ¼öÁ¤ÇÏ±â -->
-	    	<td><button type="button" id="mod" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">º¯°æ</button> </td>
-	    	<td><a href="deleteCart.do?cmd=deleteCart&prono=${i.prono}"><button type="button" class="btn btn-info" style="margin-bottom: 5px;  margin-right: 10px;">»èÁ¦</button></a></td>
+	    	<td style="font-size: 13pt; font-weight:normal;"> 
+	    		ê¸ˆì•¡ : <label class=" " style="font-size: 13pt; font-weight:normal; margin-right: 10px;"><%=productBean.getPrice()*productBean.getCount() %></label>ì›</td>
+	    	<td><label class="countLabel" style="font-size: 13pt; font-weight:normal; margin-left:10px; margin-right: 10px;"> 
+	    			ìˆ˜ëŸ‰ : <input type="number" id="count" value="<%=productBean.getCount() %>" step="1" min="1" max="10" style="text-align: center;  width: 70px;"></label> </td>
+	    				
+	    	<!--ì‚­ì œëˆ„ë¥´ë©´ ì´ì „ ìˆ˜ëŸ‰ê°’ìœ¼ë¡œ ë˜ëŒì•„ì˜¤ëŠ” ê²ƒ ìˆ˜ì •í•˜ê¸° -->
+	    	<td><button type="button" id="mod" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">ë³€ê²½</button>
+	    		<input type="hidden" class="price" value="<%=productBean.getPrice()%>"> </td>
+	    	<td><a href="deleteCart.do?cmd=deleteCart&prono=${i.prono}"><button type="button" class="btn btn-info" style="margin-bottom: 5px;  margin-right: 10px;">ì‚­ì œ</button></a></td>
+	    	<input type="hidden" class="totalPrice" > 
     		</tr>
     	</table>
     	</div>
@@ -108,13 +112,13 @@
     		<a><img src="/KAKAO/img/doll/<%=productBean.getSubtype()%>/<%=productBean.getMainimg() %>" width="200" height="200" style="padding-right: 20px;"></a>
     			<span style="font-size: 18pt; padding-left: 30px; padding-right: 300px;" > <%=productBean.getProname() %> </span>
     			<div  align="right" >
-	    			±İ¾× : <label class="priceLabel" style="font-weight: light;"><%=productBean.getPrice() %></label>¿ø
-	    			¼ö·® : <input type="number" class="count" value="" step="1" min="1" max="10" style="text-align: center;  width: 70px;">
+	    			ê¸ˆì•¡ : <label class="priceLabel" style="font-weight: light;"><%=productBean.getPrice() %></label>ì›
+	    			ìˆ˜ëŸ‰ : <input type="number" class="count" value="" step="1" min="1" max="10" style="text-align: center;  width: 70px;">
 	    				 <input type="hidden" class="price" value="">
 	    				 <input type="hidden" class="totalPrice">
-	    				 <!--»èÁ¦´©¸£¸é ÀÌÀü ¼ö·®°ªÀ¸·Î µÇµ¹¾Æ¿À´Â °Í ¼öÁ¤ÇÏ±â -->
-	    			     <button type="button" id="mod" class="btn btn-info">¼öÁ¤</button>
-	    			<span style="padding-left: 10px; padding-right: 20px;"><a href="deleteCart.do?cmd=deleteCart&prono=${i.prono}"><button type="button" class="btn btn-info">»èÁ¦</button></a></span>
+	    				 <!--ì‚­ì œëˆ„ë¥´ë©´ ì´ì „ ìˆ˜ëŸ‰ê°’ìœ¼ë¡œ ë˜ëŒì•„ì˜¤ëŠ” ê²ƒ ìˆ˜ì •í•˜ê¸° -->
+	    			     <button type="button" id="mod" class="btn btn-info">ìˆ˜ì •</button>
+	    			<span style="padding-left: 10px; padding-right: 20px;"><a href="deleteCart.do?cmd=deleteCart&prono=${i.prono}"><button type="button" class="btn btn-info">ì‚­ì œ</button></a></span>
     			</div>
     		<hr>
     	</div> --%>
@@ -123,8 +127,8 @@
     	%>
     </div> -
     <div class="priceDiv" style="width:59%; margin: 0 auto;">
-    	<h2 style="padding: 20px;" align="left">Àå¹Ù±¸´Ï ÇÕ°è</h2>
-    	<div style="width: 100%" align="right"><p style="padding: 20px; font-size: 14pt; font-weight: lighter;">ÃÑÇÕ°è±İ¾× &emsp; <label class="cartTotalPrice" style="font-size: 14pt; font-weight: bold;"></label>¿ø</p></div> 
+    	<h2 style="padding: 20px;" align="left">ì¥ë°”êµ¬ë‹ˆ í•©ê³„</h2>
+    	<div style="width: 100%" align="right"><p style="padding: 20px; font-size: 14pt; font-weight: lighter;">ì´í•©ê³„ê¸ˆì•¡ &emsp; <label class="cartTotalPrice" style="font-size: 14pt; font-weight: bold;"></label>ì›</p></div> 
     	<hr style="border-color: #717070;">
     </div>
   <jsp:include page="footer.jsp" />

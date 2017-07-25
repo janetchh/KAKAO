@@ -1,8 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="kakao.bean.ProductBean"%>
 <%@page import="kakao.dao.ProductDao"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -82,17 +81,17 @@ div.desc {
 <script type="text/javascript">
 	$(function() {
 		
-		//¼¼ºÎÅ¸ÀÔ È¿°ú
-		if($("input#subtype").val()=="mini"){
+		//ì„¸ë¶€íƒ€ì… íš¨ê³¼
+		if($("input#subtype").val()=="ë¯¸ë‹ˆì¸í˜•"){
 			$("div.topnav a").attr("class",""); 
 			$("a#mini").attr("class","active");
-		}else if($("input#subtype").val()=="2535cm"){
+		}else if($("input#subtype").val()=="25_35cm"){
 			$("div.topnav a").attr("class",""); 
 			$("a#2535cm").attr("class","active");
-		}else if($("input#subtype").val()=="big"){
+		}else if($("input#subtype").val()=="ëŒ€í˜•ì¸í˜•"){
 			$("div.topnav a").attr("class",""); 
 			$("a#big").attr("class","active");
-		}else if($("input#subtype").val()=="keychain"){
+		}else if($("input#subtype").val()=="í‚¤ì²´ì¸ì¸í˜•"){
 			$("div.topnav a").attr("class",""); 
 			$("a#keychain").attr("class","active");
 		}
@@ -105,39 +104,39 @@ div.desc {
 	
 	
 	<%
-		request.setCharacterEncoding("EUC-KR");
+		request.setCharacterEncoding("UTF-8");
 		ProductDao dao = new ProductDao();
 		List<ProductBean> list = null;
 		String subtype= request.getParameter("subtype");
 		if(subtype!=null){
 			list = dao.selectList(subtype);
 	%>
-	<!--Å¸ÀÌÆ²IMG  -->
+	<!--íƒ€ì´í‹€IMG  -->
 	<img alt="dollmain" src="/KAKAO/img/<%=subtype%>.jpg" style="width: 100%; height: 80%;">
 	
 	<%
 		}else{
-			list = dao.selectAllList("doll");
+			list = dao.selectAllList("ì¸í˜•");
 	%>
 	
-	<!--Å¸ÀÌÆ²IMG  -->
+	<!--íƒ€ì´í‹€IMG  -->
 	<img alt="dollmain" src="/KAKAO/img/dollmainmod.jpg" style="width: 100%; height: 80%;">
 	
 	<%
 		}
 	%>
 	
-	<!--¼¼ºÎÄ«Å×°í¸®  -->
+	<!--ì„¸ë¶€ì¹´í…Œê³ ë¦¬  -->
 	<div class="topnav">
-	  <a id="all" class="active" href="doll.jsp">ÀüÃ¼</a>
-	  <a id="mini" href="doll.jsp?subtype=mini">¹Ì´ÏÀÎÇü</a>
-	  <a id="2535cm" href="doll.jsp?subtype=2535cm">25cm/35cmÀÎÇü</a>
-	  <a id="big" href="doll.jsp?subtype=big">´ëÇüÀÎÇü</a>
-	  <a id="keychain" href="doll.jsp?subtype=keychain">Å°Ã¼ÀÎÀÎÇü</a>
+	  <a id="all" class="active" href="doll.jsp">ì „ì²´</a>
+	  <a id="mini" href="doll.jsp?subtype=ë¯¸ë‹ˆì¸í˜•">ë¯¸ë‹ˆì¸í˜•</a>
+	  <a id="2535cm" href="doll.jsp?subtype=25_35cm">25cm/35cmì¸í˜•</a>
+	  <a id="big" href="doll.jsp?subtype=ëŒ€í˜•ì¸í˜•">ëŒ€í˜•ì¸í˜•</a>
+	  <a id="keychain" href="doll.jsp?subtype=í‚¤ì²´ì¸ì¸í˜•">í‚¤ì²´ì¸ì¸í˜•</a>
 	  <input type="hidden"  id="subtype" value="<%=subtype%>">
 	</div>
 	
-   <h3 style="margin-left: 230px;">ÃÑ <%=list.size() %>°³ÀÇ »óÇ°ÀÌ Á¶È¸µÇ¾ú½À´Ï´Ù.</h3>
+   <h3 style="margin-left: 230px;">ì´ <%=list.size() %>ê°œì˜ ìƒí’ˆì´ ì¡°íšŒë˜ì—ˆìŠµë‹ˆë‹¤.</h3>
 	
 	<div id="outDiv">
 		<div class="maindiv" align="center">
@@ -149,9 +148,9 @@ div.desc {
 					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
 					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=bean.getPrice() %></label><br>
 					</a>
-					<a href=""><button type="button" class="btn btn-info">ÂòÇÏ±â</button></a>		
-					<a href="cartList.jsp?prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info">Àå¹Ù±¸´Ï</button></a>
-					<a href=""><button type="button" class="btn btn-info">ÁÖ¹®ÇÏ±â</button></a>						
+					<a href=""><button type="button" class="btn btn-info">ì°œí•˜ê¸°</button></a>		
+					<a href="cartList.jsp?prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info">ì¥ë°”êµ¬ë‹ˆ</button></a>
+					<a href=""><button type="button" class="btn btn-info">ì£¼ë¬¸í•˜ê¸°</button></a>						
 					</div>
 			<%
 				}
