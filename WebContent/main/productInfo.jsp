@@ -42,7 +42,7 @@
 				<div class="contents">
 					<div class="infoDiv" align="center" style="width: 100%; margin: 0 auto; padding: 10px;">
 						<%-- <h2 class="title" style="padding: 10px;"><%=bean.getProname() %></h2> --%>
-						<div><img src="/KAKAO/img/doll/<%=bean.getSubtype()%>/<%=bean.getMainimg() %>" width="60%" style="margin-top: 10px;"></div><br><br><Br>
+						<div><img src="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getMainimg() %>" width="60%" style="margin-top: 10px;"></div><br><br><Br>
 						<%-- <h4 style="padding-top: 20px; margin-bottom:0; color: #999999;">${productInfo.type} / ${productInfo.subtype}</h4> --%>
 						<h1 class="title" style="padding-bottom: 10px; margin-top: 5px; "><%=bean.getProname() %></h1>
 						<h2 style="padding-bottom: 10px; margin-top: 3px;"><%=bean.getPrice() %>¿ø</h2>
@@ -62,12 +62,12 @@
 					
 						<hr style="height: 1px;">
 						<h4 style="padding: 20px;  width: 50%; color:#999999; "><%=bean.getInfo() %></h4>
-						<img alt="" src="/KAKAO/img/doll/<%=bean.getSubtype()%>/<%=bean.getDetailimg1()%>" width="60%" style="margin-top: 10px;">
-						<img alt="" src="/KAKAO/img/doll/<%=bean.getSubtype()%>/<%=bean.getDetailimg2()%>" width="60%" style="margin-top: 10px;">
+						<img alt="" src="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getDetailimg1()%>" width="60%" style="margin-top: 10px;">
+						<img alt="" src="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getDetailimg2()%>" width="60%" style="margin-top: 10px;">
 						<%
 						if(bean.getDetailimg3()!=null){
 						%>
-							<img alt="" src="/KAKAO/img/doll/<%=bean.getSubtype()%>/<%=bean.getDetailimg3() %>" width="60%" style="margin-top: 10px;">
+							<img alt="" src="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getDetailimg3() %>" width="60%" style="margin-top: 10px;">
 						<%
 						}
 						%>

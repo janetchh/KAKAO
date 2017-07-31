@@ -144,27 +144,31 @@ body {
 	<!-- 카테고리 -->
 	<div id="headerContainer">
 		<div id="mainTitle" align="center">
-			<a href="main.jsp"> <img src="/KAKAO/img/logo/mainlogo.jpg">
+			<a href="/KAKAO/main/main.jsp"> <img src="/KAKAO/img/logo/mainlogo.jpg">
 			</a>
 		</div>
 
 		<div class="dropdown">
 			<button class="dropbtn">캐릭터</button>
 			<div class="dropdown-content">
-				<a href="#">라이언</a> <a href="#">무지</a> <a href="#">어피치</a> <a
-					href="#">프로도</a> <a href="#">네오</a> <a href="#">튜브</a> <a href="#">제이지</a>
+				<a href="#">라이언</a> 
+				<a href="#">무지</a> 
+				<a href="#">어피치</a> 
+				<a href="#">프로도</a> 
+				<a href="#">네오</a> 
+				<a href="#">튜브</a> 
+				<a href="#">제이지</a>
 				<a href="#">콘</a>
 			</div>
 		</div>
 		<div class="dropdown">
 			<button class="dropbtn">카테고리</button>
 			<div class="dropdown-content">
-				<a href="doll.jsp">인형</a> 
-				<a href="#">리빙</a>
-				<a href="#">잡화</a> 
-				<a href="#">문구</a> 
-				<a href="#">생활테크</a> 
-				<a href="#">푸드</a>
+				<a href="/KAKAO/category/doll.jsp">인형</a> 
+				<a href="/KAKAO/category/doll.jsp">리빙</a>
+				<a href="/KAKAO/category/accessory.jsp">잡화</a> 
+				<a href="/KAKAO/category/doll.jsp">문구</a> 
+				<a href="/KAKAO/category/doll.jsp">생활테크</a> 
 			</div>
 		</div>
 		<div class="dropdown">
@@ -192,11 +196,9 @@ body {
 		<div id="searchContainer" align="center">
 			<table align="center">
 				<tr>
-					<td><input type="text" id="searchWindow" class="form-control"
-						placeholder="상품검색"></td>
+					<td><input type="text" id="searchWindow" class="form-control" placeholder="상품검색"></td>
 					<td>&nbsp;&nbsp;&nbsp;</td>
-					<td><a href="#" class="btn btn-primary btn-info"><span
-							class="glyphicon glyphicon-search"></span></a></td>
+					<td><a href="#" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-search"></span></a></td>
 				</tr>
 			</table>
 		</div>

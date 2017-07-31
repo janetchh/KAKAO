@@ -120,7 +120,7 @@
 			style="width: 60%; padding: 10px; margin: 0 auto;">
 			<table>
 				<tr>
-					<td><a><img src="/KAKAO/img/doll/<%=productBean.getSubtype()%>/<%=productBean.getMainimg()%>" width="200" height="200" style="padding-right: 20px;"></a></td>
+					<td><a><img src="/KAKAO/img/<%=productBean.getType() %>/<%=productBean.getSubtype()%>/<%=productBean.getMainimg()%>" width="200" height="200" style="padding-right: 20px;"></a></td>
 					<td style="width: 520px;">
 						<label style="font-size: 20pt; font-weight: normal; padding-left: 30px;"><%=productBean.getProname()%></label></td>
 					<td style="font-size: 13pt; font-weight: normal;">
