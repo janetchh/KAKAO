@@ -58,4 +58,19 @@ public class ProductDao {
 	public Object selectOne(String prono) throws Exception{
 		return sqlSessionFactory.openSession().selectOne("selectOne", prono);
 	}
+	
+	public List<ProductBean> selectCharacterList(String character){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSessionFactory.openSession().selectList("selectCharacterList",character);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	 
 }

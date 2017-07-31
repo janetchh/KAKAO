@@ -128,7 +128,12 @@ body {
 <header>
 	<%
 		response.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		String id = (String)session.getAttribute("id");
+		String state = request.getParameter("state");
+		//로그아웃일때
+		if(state!=null && state.equals("logout")){
+			session.removeAttribute("id");
+		}
 	%>
 	<!--로그인성공시  -->
 	<%
@@ -144,42 +149,54 @@ body {
 	<!-- 카테고리 -->
 	<div id="headerContainer">
 		<div id="mainTitle" align="center">
-			<a href="/KAKAO/main/main.jsp"> <img src="/KAKAO/img/logo/mainlogo.jpg">
+			<a href="/KAKAO/main/main.jsp"> <img src="/KAKAO/img/logo/mainlogo.jpg" >
 			</a>
 		</div>
 
 		<div class="dropdown">
 			<button class="dropbtn">캐릭터</button>
 			<div class="dropdown-content">
-				<a href="#">라이언</a> 
-				<a href="#">무지</a> 
-				<a href="#">어피치</a> 
-				<a href="#">프로도</a> 
-				<a href="#">네오</a> 
-				<a href="#">튜브</a> 
-				<a href="#">제이지</a>
-				<a href="#">콘</a>
+				<a href="/KAKAO/characters/ryan.jsp">라이언</a> 
+				<a href="/KAKAO/characters/muzi.jsp">무지</a> 
+				<a href="/KAKAO/characters/apeach.jsp">어피치</a> 
+				<a href="/KAKAO/characters/frodo.jsp">프로도</a> 
+				<a href="/KAKAO/characters/neo.jsp">네오</a> 
+				<a href="/KAKAO/characters/tube.jsp">튜브</a> 
+				<a href="/KAKAO/characters/jayG.jsp">제이지</a>
+				<a href="/KAKAO/characters/conn.jsp">콘</a>
 			</div>
 		</div>
 		<div class="dropdown">
 			<button class="dropbtn">카테고리</button>
 			<div class="dropdown-content">
 				<a href="/KAKAO/category/doll.jsp">인형</a> 
-				<a href="/KAKAO/category/doll.jsp">리빙</a>
+				<a href="/KAKAO/category/living.jsp">리빙</a>
 				<a href="/KAKAO/category/accessory.jsp">잡화</a> 
-				<a href="/KAKAO/category/doll.jsp">문구</a> 
-				<a href="/KAKAO/category/doll.jsp">생활테크</a> 
+				<a href="/KAKAO/category/stationery.jsp">문구</a> 
+				<a href="/KAKAO/category/electronic.jsp">생활테크</a> 
 			</div>
 		</div>
 		<div class="dropdown">
 			<button class="dropbtn">마이페이지</button>
 			<div class="dropdown-content">
-				<a href="login.jsp">로그인</a> 
+			<%
+			if(id==null){
+			%>
+				<a href="/KAKAO/main/login.jsp">로그인</a> 
+			<%
+			}
+			%>
 				<a href="#">장바구니</a>
 				<a href="#">주문내역</a> <a href="#">찜</a> 
 				<a href="#">취소및교환</a> 
 				<a href="#">1:1문의</a> 
-				<a href="login.jsp">로그아웃</a>
+			<%
+			if(id!=null){
+			%>
+				<a href="main.jsp?state=logout" id="logout">로그아웃</a>
+			<%
+			}
+			%>
 			</div>
 		</div>
 		<div class="dropdown">

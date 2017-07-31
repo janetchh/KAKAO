@@ -114,7 +114,7 @@ div.desc {
 			list = dao.selectList(subtype);
 	%>
 	<!--타이틀IMG  -->
-	<img alt="dollmain" src="/KAKAO/img/잡화/<%=subtype%>.jpg" style="width: 100%; height: 250px;">
+	<img alt="accessorymain" src="/KAKAO/img/잡화/<%=subtype%>.jpg" style="width: 100%; height: 250px;">
 	
 	<%
 		}else{
@@ -122,7 +122,7 @@ div.desc {
 	%>
 	
 	<!--타이틀IMG  -->
-	 <img alt="dollmain" src="/KAKAO/img/잡화/accessorymain.jpg" style="width: 100%; height: 80%;"> 
+	 <img alt="accessorymain" src="/KAKAO/img/잡화/accessorymain.jpg" style="width: 100%; height: 80%;"> 
 
 	<%
 		}

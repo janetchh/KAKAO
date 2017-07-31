@@ -81,21 +81,24 @@ div.desc {
 	$(function() {
 		
 		//세부타입 효과
-		if($("input#subtype").val()=="교통카드"){
+		if($("input#subtype").val()=="생활소품"){
 			$("div.topnav a").attr("class",""); 
-			$("a#transportationCard").attr("class","active");
-		}else if($("input#subtype").val()=="시즌소품"){
+			$("a#livingAccessory").attr("class","active");
+		}else if($("input#subtype").val()=="욕실용품"){
 			$("div.topnav a").attr("class",""); 
-			$("a#seasonAccessory").attr("class","active");
-		}else if($("input#subtype").val()=="신발"){
+			$("a#bathroomWare").attr("class","active");
+		}else if($("input#subtype").val()=="주방용품"){
 			$("div.topnav a").attr("class",""); 
-			$("a#shoes").attr("class","active");
-		}else if($("input#subtype").val()=="파우치_지갑_가방"){
+			$("a#kitchenware").attr("class","active");
+		}else if($("input#subtype").val()=="컵_텀블러"){
 			$("div.topnav a").attr("class",""); 
-			$("a#pouchWalletBag").attr("class","active");
-		}else if($("input#subtype").val()=="패션소품"){
+			$("a#cupTumbler").attr("class","active");
+		}else if($("input#subtype").val()=="탈취_방향제"){
 			$("div.topnav a").attr("class",""); 
-			$("a#fashionAccessory").attr("class","active");
+			$("a#airFreshener").attr("class","active");
+		}else if($("input#subtype").val()=="패브릭"){
+			$("div.topnav a").attr("class",""); 
+			$("a#fabric").attr("class","active");
 		}
 		
 	});
@@ -114,15 +117,15 @@ div.desc {
 			list = dao.selectList(subtype);
 	%>
 	<!--타이틀IMG  -->
-	<img alt="dollmain" src="/KAKAO/img/잡화/<%=subtype%>.jpg" style="width: 100%; height: 250px;">
+	<img alt="livingmain" src="/KAKAO/img/리빙/<%=subtype%>.jpg" style="width: 100%; height: 250px;">
 	
 	<%
 		}else{
-			list = dao.selectAllList("잡화");
+			list = dao.selectAllList("리빙");
 	%>
 	
 	<!--타이틀IMG  -->
-	 <img alt="dollmain" src="/KAKAO/img/잡화/accessorymain.jpg" style="width: 100%; height: 80%;"> 
+	 <img alt="livingmain" src="/KAKAO/img/리빙/livingmain.jpg" style="width: 100%; height: 80%;"> 
 
 	<%
 		}
@@ -131,14 +134,12 @@ div.desc {
 	<!--세부카테고리  -->
 	<div class="topnav">
 	  <a id="all" class="active" href="living.jsp">전체</a>
-	  <a id="livingAccessory" href="accessory.jsp?subtype=생활소품">생활소품</a>
-	  <a id="bathroomWare" href="accessory.jsp?subtype=욕실용품">욕실용품</a>
-	  <a id="kitchenware" href="accessory.jsp?subtype=주방용품">주방용품</a>
-	  <a id="cupTumbler" href="accessory.jsp?subtype=컵_텀블러">컵/텀블러</a>
-	  <a id="airFreshener" href="accessory.jsp?subtype=탈취_방향제">탈취/방향제</a>
-	  
-	  <!--다시구현!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
-	  <a id="fashionAccessory" href="accessory.jsp?subtype=패션소품">패브릭</a>
+	  <a id="livingAccessory" href="living.jsp?subtype=생활소품">생활소품</a>
+	  <a id="bathroomWare" href="living.jsp?subtype=욕실용품">욕실용품</a>
+	  <a id="kitchenware" href="living.jsp?subtype=주방용품">주방용품</a>
+	  <a id="cupTumbler" href="living.jsp?subtype=컵_텀블러">컵/텀블러</a>
+	  <a id="airFreshener" href="living.jsp?subtype=탈취_방향제">탈취/방향제</a>
+	  <a id="fabric" href="living.jsp?subtype=패브릭">패브릭</a>
 	  <input type="hidden"  id="subtype" value="<%=subtype%>">
 	</div>
 	
@@ -150,7 +151,7 @@ div.desc {
 				for( ProductBean bean : list ){
 			%>
 				<div class="gallery" style="height: 100%;">
-					<a href="../main/productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/잡화/<%=bean.getMainimg() %>" width="600" height="400" >
+					<a href="../main/productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/리빙/<%=bean.getMainimg() %>" width="600" height="400" >
 					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
 					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=bean.getPrice() %></label><br>
 					</a>
