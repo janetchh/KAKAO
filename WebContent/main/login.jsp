@@ -44,14 +44,12 @@
 		MemberDao dao = new MemberDao();
 		String state = request.getParameter("state");
 		
-		Cookie [] cookies = request.getCookies();
-		
 	%>
 
 	<jsp:include page="header.jsp"/>
 	<img alt="cartList" src="/KAKAO/img/loginmainFont.png" style="width: 100%; height: 100%;">
 	<form action="/KAKAO/main/loginProcess.jsp" method="POST" id="loginFrm">
-		<div class="mainDiv" align="center" style="margin: 30px auto; width: 500px; height: 500px; border: 1px solid #D5D5D5;">
+		<div class="mainDiv" align="center" style="margin: 30px auto; width: 500px; height: 550px; border: 1px solid #D5D5D5;">
 			<h1 style="padding: 30px;" align="center">KAKAO 로그인</h1>
 			<%
 			if(state==null){
@@ -60,25 +58,13 @@
 			%>
 				<h4 style="padding: 10px;" align="center">ID와 PW를 다시한번확인해주세요!</h4>	
 			<%
+			}else if(state.equals("idNull")){
+			%>
+				<h4 style="padding: 10px;" align="center">로그인 후 이용해주세요!</h4>
+			<%
 			}
 			%>
 				<div class="input-group">
-				
-			<%
-			if(cookies!=null){
-				for(int i=0;i<cookies.length;i++){
-					System.out.println(cookies[i].getValue());
-					System.out.println(cookies[i].getName());
-			%>
-				<div class="difPadding"><input type="text" name="id" class="form-control" value="<%=cookies[i].getValue()%>"></div>
-			<%
-				}
-			}else{
-				%>
-				<div class="difPadding"><input type="text" name="id" class="form-control" placeholder="카카오아이디"></div>
-			<%
-			}
-			%>
 					<div class="difPadding"><input type="text" name="id" class="form-control" placeholder="카카오아이디"></div>
 					<div class="difPadding"><input type="password" name="pw" class="form-control" placeholder="비밀번호(4~16자리)"></div>
 					<div class="padding"><input type="checkbox" name="idSave">카카오아이디 저장</div>

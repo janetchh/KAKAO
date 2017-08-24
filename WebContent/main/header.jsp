@@ -177,17 +177,18 @@ body {
 			<%
 			if(id==null){
 			%>
-				<a href="/KAKAO/main/login.jsp">로그인</a> 
+				<a href="/KAKAO/main/login.jsp">로그인</a>
+				<a href="/KAKAO/main/login.jsp?state=idNull">장바구니</a>
+				<a href="/KAKAO/main/login.jsp?state=idNull">주문내역</a> 
+				<a href="/KAKAO/main/login.jsp?state=idNull">찜</a> 
+				<a href="/KAKAO/main/login.jsp?state=idNull">1:1문의</a> 
 			<%
-			}
+			}else if(id!=null){
 			%>
-				<a href="#">장바구니</a>
-				<a href="#">주문내역</a> <a href="#">찜</a> 
-				<a href="#">취소및교환</a> 
+				<a href="/KAKAO/main/cartList.jsp?job=direct">장바구니</a>
+				<a href="#">주문내역</a> 
+				<a href="#">찜</a> 
 				<a href="#">1:1문의</a> 
-			<%
-			if(id!=null){
-			%>
 				<a href="/KAKAO/main/loginProcess.jsp?state=logout" id="logout">로그아웃</a>
 			<%
 			}

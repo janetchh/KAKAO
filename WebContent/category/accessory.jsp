@@ -147,12 +147,25 @@ div.desc {
 				for( ProductBean bean : list ){
 			%>
 				<div class="gallery" style="height: 100%;">
-					<a href="../main/productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/잡화/<%=bean.getMainimg() %>" width="600" height="400" >
+					<a href="/KAKAO/main/productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/잡화/<%=bean.getMainimg() %>" width="600" height="400" >
 					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
 					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=bean.getPrice() %></label><br>
 					</a>
 					<a href=""><button type="button" class="btn btn-info">찜하기</button></a>		
-					<a href="../main/cartList.jsp?job=add&prono=<%=bean.getProno()%>&count=1"><button type="button" class="btn btn-info">장바구니</button></a>
+				
+				<%
+					String id = (String)session.getAttribute("id");
+					if(id==null){
+				%>
+					<a href="/KAKAO/main/login.jsp?state=idNull"><button type="button" class="btn btn-info">장바구니</button></a>
+									
+				<%
+					}else{
+				%>
+					<a href="/KAKAO/main/cartList.jsp?job=add&prono=<%=bean.getProno()%>&count=1"><button type="button" class="btn btn-info">장바구니</button></a>
+				<%
+					}
+				%>
 					<a href=""><button type="button" class="btn btn-info">주문하기</button></a>						
 					</div>
 			<%

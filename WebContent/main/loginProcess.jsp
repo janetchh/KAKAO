@@ -12,7 +12,6 @@
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String state = request.getParameter("state");
-		String idSave = request.getParameter("idSave");
 
 		MemberDao dao = new MemberDao();
 
@@ -28,18 +27,10 @@
 		/* ·Î±×¾Æ¿ô½Ã  */
 		} else if (state.equals("logout")) {
 			session.removeAttribute("id");
+			session.removeAttribute("cartList");
 			response.sendRedirect("/KAKAO/main/main.jsp");
 		}
-		
-		
-		/* ÄíÅ°¼³Á¤ */
-		if(idSave.equals("on")){
-			Cookie cookie = new Cookie("id",id);
-			System.out.println(cookie);
-			response.addCookie(cookie);
-		}else{
-			
-		}
+	
 	%>
 
 

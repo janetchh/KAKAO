@@ -17,10 +17,13 @@
 <script type="text/javascript">
 	$(function() {
 		$("button#cart").click(function(){
-			//alert($("input#count").val());
 			$("form#cartFrm").submit();
-		})
+		});
 		
+		$("button#cartIdNull").click(function(){
+			$("form#cartFrm").attr("action","/KAKAO/main/login.jsp?state=idNull");
+			$("form#cartFrm").submit();
+		});
 	});
 </script>
 <style type="text/css">
@@ -53,8 +56,22 @@
 							  <input type="number" id="count" name="count" value="1" step="1" min="1" max="10" style="text-align: center; height: 33px; margin-right: 2px;" >
 							  <input type="hidden" id="prono" name="prono" value="<%=bean.getProno()%>">
 							  <button type="button" id="" class="btn btn-info">찜</button>
-							  <button type="button" id="cart" class="btn btn-info">장바구니</button>
-							  <button type="button" class="btn btn-info">주문하기</button>
+							  
+							   <%
+									String id = (String)session.getAttribute("id");
+									if(id==null){
+								%>
+									<button type="button" id="cartIdNull" class="btn btn-info">장바구니</button>
+													
+								<%
+									}else{
+								%>
+									  <button type="button" id="cart" class="btn btn-info">장바구니</button>
+								<%
+									}
+								%>
+							
+							  <a href="/KAKAO/main/order.jsp?prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info">주문하기</button></a>
 							  <input type="hidden" name="job" value="add">
 							</div>
 						</div>
