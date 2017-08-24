@@ -129,11 +129,6 @@ body {
 	<%
 		response.setCharacterEncoding("UTF-8");
 		String id = (String)session.getAttribute("id");
-		String state = request.getParameter("state");
-		//로그아웃일때
-		if(state!=null && state.equals("logout")){
-			session.removeAttribute("id");
-		}
 	%>
 	<!--로그인성공시  -->
 	<%
@@ -193,7 +188,7 @@ body {
 			<%
 			if(id!=null){
 			%>
-				<a href="main.jsp?state=logout" id="logout">로그아웃</a>
+				<a href="/KAKAO/main/loginProcess.jsp?state=logout" id="logout">로그아웃</a>
 			<%
 			}
 			%>

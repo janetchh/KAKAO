@@ -6,7 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idCheck" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT PW FROM MEMBER WHERE ID=#{id}
 	</select>
-	
+	<select id="selectMember" parameterType="java.lang.String" resultType="member">
+		SELECT * FROM MEMBER WHERE ID=#{id}
+	</select>
 </mapper>
 
 

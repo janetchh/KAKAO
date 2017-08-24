@@ -1,3 +1,4 @@
+<%@page import="kakao.bean.MemberBean"%>
 <%@page import="kakao.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -22,21 +23,18 @@
 </style>
 <script type="text/javascript">
   $(function(){
+	  
+	  /* 로그인 제약사항 */
 	  $("button[name='loginBtn']").click(function(){
 		 if($("input[name='id']").val()==''||$("input[name='pw']").val()==''){
 			alert('ID와 PW를 모두 입력해주세요!');	
 		 }else{
 			 $("form#loginFrm").submit();
 		 }
-		 
-		 
-		 //미완성
-		 if(("input#idCheck").val()=='login'){
-			 alert('pk');
-			 $("form#loginFrm").attr('action','main.jsp');
-			 $("form#loginFrm").submit();
-		 }
 	  });
+	  
+	  
+	  
   });
 </script>
 </head>
@@ -44,42 +42,47 @@
 
 	<%
 		MemberDao dao = new MemberDao();
-		String id=request.getParameter("id");
-		String pw=request.getParameter("pw");
+		String state = request.getParameter("state");
 		
-		/* if(id!=null){
-			if(dao.idCheck(id,pw)){
-				session.setAttribute("id", id);
-			}else{
-				//로그인실패시
-			}
-		} */
+		Cookie [] cookies = request.getCookies();
 		
 	%>
 
 	<jsp:include page="header.jsp"/>
 	<img alt="cartList" src="/KAKAO/img/loginmainFont.png" style="width: 100%; height: 100%;">
-	<form action="login.jsp" method="POST" id="loginFrm">
+	<form action="/KAKAO/main/loginProcess.jsp" method="POST" id="loginFrm">
 		<div class="mainDiv" align="center" style="margin: 30px auto; width: 500px; height: 500px; border: 1px solid #D5D5D5;">
 			<h1 style="padding: 30px;" align="center">KAKAO 로그인</h1>
 			<%
-			if(id!=null){
-				if(dao.idCheck(id,pw)){
-					session.setAttribute("id", id);
-					session.setAttribute("state", "login");
-				}else{
-					%>
+			if(state==null){
+				
+			}else if(state.equals("false")){
+			%>
 				<h4 style="padding: 10px;" align="center">ID와 PW를 다시한번확인해주세요!</h4>	
-					<%
-				}
+			<%
 			}
 			%>
 				<div class="input-group">
+				
+			<%
+			if(cookies!=null){
+				for(int i=0;i<cookies.length;i++){
+					System.out.println(cookies[i].getValue());
+					System.out.println(cookies[i].getName());
+			%>
+				<div class="difPadding"><input type="text" name="id" class="form-control" value="<%=cookies[i].getValue()%>"></div>
+			<%
+				}
+			}else{
+				%>
+				<div class="difPadding"><input type="text" name="id" class="form-control" placeholder="카카오아이디"></div>
+			<%
+			}
+			%>
 					<div class="difPadding"><input type="text" name="id" class="form-control" placeholder="카카오아이디"></div>
 					<div class="difPadding"><input type="password" name="pw" class="form-control" placeholder="비밀번호(4~16자리)"></div>
 					<div class="padding"><input type="checkbox" name="idSave">카카오아이디 저장</div>
 					<div class="padding"><button type="button" name="loginBtn" class="btn btn-info" style="width: 196px;">로그인</button></div>
-					<input type="hidden" id="idCheck" value="<%=session.getAttribute("state")%>">
 				</div>
 			<hr style="width: 450px; margin-top: 50px;">
 				<div class="bottom-group">
