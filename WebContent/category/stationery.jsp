@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="kakao.bean.ProductBean"%>
 <%@page import="java.util.List"%>
 <%@page import="kakao.dao.ProductDao"%>
@@ -153,7 +154,7 @@ div.desc {
 				<div class="gallery" style="height: 100%;">
 					<a href="/KAKAO/main/productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/문구/<%=bean.getMainimg() %>" width="600" height="400" >
 					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
-					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=bean.getPrice() %></label><br>
+					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=NumberFormat.getInstance().format( bean.getPrice() )%></label><br>
 					</a>
 					<a href=""><button type="button" class="btn btn-info">찜하기</button></a>		
 					<%

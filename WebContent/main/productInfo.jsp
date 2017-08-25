@@ -1,3 +1,4 @@
+<%@page import="java.text.NumberFormat"%>
 <%@page import="kakao.dao.ProductDao"%>
 <%@page import="kakao.bean.ProductBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -48,7 +49,7 @@
 						<div><img src="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getMainimg() %>" width="60%" style="margin-top: 10px;"></div><br><br><Br>
 						<h3 style="padding-top: 10px; margin-bottom:20px; color: #999999;"><%=bean.getType() %> / <%=bean.getSubtype() %></h3>
 						<h1 class="title" style="padding-bottom: 10px; margin-top: 5px; "><%=bean.getProname() %></h1>
-						<h2 style="padding-bottom: 10px; margin-top: 3px;"><%=bean.getPrice() %>¿ø</h2>
+						<h2 style="padding-bottom: 10px; margin-top: 3px;"><%=NumberFormat.getInstance().format( bean.getPrice() )%>¿ø</h2>
 						
 					<form action="cartList.jsp" method="post" id="cartFrm">
 						<div class="middleDiv" align="right" style="width: 60%; margin: 0 auto; margin-top:10px; padding: 10px;">

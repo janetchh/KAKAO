@@ -27,7 +27,8 @@
 		$("button#mod").click(function() {
 				$(this).parents().prev().prev().children().eq(0).text($(this).parents().prev().children().eq(0).find("input#count").val()* $(this).siblings(".price").val());
 				$(this).siblings(".totalPrice").val($(this).parents().prev().prev().children().eq(0).text());
-					
+				$(this).siblings(".totalCount").val($(this).parents().prev().children().eq(0).find("input#count").val());	
+				
 					$("label.onePrice").each(function() {
 						$(this).siblings(".totalPrice").val($(this).text());
 						price += eval($(this).siblings(".totalPrice").val());
@@ -36,6 +37,9 @@
 					price = 0;
 		});
 		
+		$("button#order").click(function(){
+			$("form#cartListFrm").submit();
+		});
 
 	});
 </script>
@@ -116,37 +120,41 @@
 			
 		</h2>
 
-		<%
-		if(cartList!=null){
-			for (ProductBean productBean : cartList) {
-		%>
-			<div class="mainDiv"
-				style="width: 60%; padding: 10px; margin: 0 auto;">
-				<table>
-					<tr>
-						<td><a><img src="/KAKAO/img/<%=productBean.getType() %>/<%=productBean.getSubtype()%>/<%=productBean.getMainimg()%>" width="200" height="200" style="padding-right: 20px;"></a></td>
-						<td style="width: 520px;">
-							<label style="font-size: 20pt; font-weight: normal; padding-left: 30px;"><%=productBean.getProname()%></label></td>
-						<td style="font-size: 13pt; font-weight: normal;">
-							금액 : <label class="onePrice" style="font-size: 13pt; font-weight: normal; margin-right: 10px;"><%=productBean.getPrice() * productBean.getCount()%></label>원
-								 <input type="hidden" class="totalPrice"></td>
-						<td><label class="countLabel" style="font-size: 13pt; font-weight: normal; margin-left: 10px; margin-right: 10px;">
-							수량 : <input type="number" id="count" value="<%=productBean.getCount()%>" step="1" min="1" max="10" style="text-align: center; width: 70px;"></label></td>
-	
-						<!--삭제누르면 이전 수량값으로 되돌아오는 것 수정하기 -->
-						<td><button type="button" id="mod" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">변경</button>
-						    <input type="hidden" class="price" value="<%=productBean.getPrice()%>">
-						    <input type="hidden" class="totalPrice"></td>
-						<td><a href="cartList.jsp?job=del&prono=<%=productBean.getProno()%>">
-							<button type="button" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">삭제</button></a></td>
-					</tr>
-				</table>
-			</div>
-			<hr>
-		<%
+		<form action="/KAKAO/main/order.jsp" method="get" id="cartListFrm">
+			<%
+			if(cartList!=null){
+				for (ProductBean productBean : cartList) {
+			%>
+				<div class="mainDiv"
+					style="width: 60%; padding: 10px; margin: 0 auto;">
+					<table>
+						<tr>
+							<td><a><img src="/KAKAO/img/<%=productBean.getType() %>/<%=productBean.getSubtype()%>/<%=productBean.getMainimg()%>" width="200" height="200" style="padding-right: 20px;"></a>
+							<input type="hidden" value="/KAKAO/img/<%=productBean.getType() %>/<%=productBean.getSubtype()%>/<%=productBean.getMainimg()%>" name="picture" ></td>
+							<td style="width: 520px;">
+								<label style="font-size: 20pt; font-weight: normal; padding-left: 30px;"><%=productBean.getProname()%></label>
+								<input type="hidden" name="proname" value="<%=productBean.getProname()%>"></td>
+							<td style="font-size: 13pt; font-weight: normal;">
+								금액 : <label class="onePrice" style="font-size: 13pt; font-weight: normal; margin-right: 10px;"><%= productBean.getPrice() * productBean.getCount()%></label>원
+									 <input type="hidden" class="totalPrice"></td>
+							<td><label class="countLabel" style="font-size: 13pt; font-weight: normal; margin-left: 10px; margin-right: 10px;">
+								수량 : <input type="number" id="count" value="<%=productBean.getCount()%>" step="1" min="1" max="10" style="text-align: center; width: 70px;"></label></td>
+							<!--삭제누르면 이전 수량값으로 되돌아오는 것 수정하기 -->
+							<td><button type="button" id="mod" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">변경</button>
+							    <input type="hidden" class="price" value="<%=productBean.getPrice()%>">
+							    <input type="hidden" class="totalPrice"  name="totalPrice" value="<%=productBean.getPrice()%>">
+							    <input type="hidden" class="totalCount" name="totalCount" value="<%=productBean.getCount()%>"></td>
+							<td><a href="cartList.jsp?job=del&prono=<%=productBean.getProno()%>">
+								<button type="button" class="btn btn-info" style="margin-bottom: 5px; margin-right: 10px;">삭제</button></a></td>
+						</tr>
+					</table>
+				</div>
+				<hr>
+			<%
+				}
 			}
-		}
-		%>
+			%>
+		</form>
 	</div>
 	
 	
@@ -158,7 +166,7 @@
 		</div>
 		<div style="width: 100%" align="right">
 			<a href="/KAKAO/main/main.jsp"><button type="button" class="btn btn-info" style=" font-size: 15pt;">쇼핑 계속하기</button></a>
-			<a href="/KAKAO/main/order.jsp"><button type="button" id="order" class="btn btn-info" style=" font-size: 15pt;">주문하기</button></a>
+			<button type="button" id="order" class="btn btn-info" style=" font-size: 15pt;">주문하기</button>
 		</div>
 		<hr style="border-color: #717070;">
 	</div>
