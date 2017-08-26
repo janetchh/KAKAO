@@ -21,6 +21,12 @@
 			$("form#cartFrm").submit();
 		});
 		
+		$("button#cartOrder").click(function(){
+			$("form#cartFrm").attr("action","order.jsp");
+			$("input#job").val("product");
+			$("form#cartFrm").submit();
+		});
+		
 		$("button#cartIdNull").click(function(){
 			$("form#cartFrm").attr("action","/KAKAO/main/login.jsp?state=idNull");
 			$("form#cartFrm").submit();
@@ -51,11 +57,15 @@
 						<h1 class="title" style="padding-bottom: 10px; margin-top: 5px; "><%=bean.getProname() %></h1>
 						<h2 style="padding-bottom: 10px; margin-top: 3px;"><%=NumberFormat.getInstance().format( bean.getPrice() )%>원</h2>
 						
-					<form action="cartList.jsp" method="post" id="cartFrm">
+					<form action="cartList.jsp" method="get" id="cartFrm">
 						<div class="middleDiv" align="right" style="width: 60%; margin: 0 auto; margin-top:10px; padding: 10px;">
 							<div id="buttonContainer" >
 							  <input type="number" id="count" name="count" value="1" step="1" min="1" max="10" style="text-align: center; height: 33px; margin-right: 2px;" >
 							  <input type="hidden" id="prono" name="prono" value="<%=bean.getProno()%>">
+							  <input type="hidden" name="proname" value="<%=bean.getProname()%>">
+							  <input type="hidden" name="picture" value="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getMainimg() %>">
+							  <input type="hidden" name="price" value="<%=bean.getPrice()%>">
+							
 							  <button type="button" id="" class="btn btn-info">찜</button>
 							  
 							   <%
@@ -63,21 +73,21 @@
 									if(id==null){
 								%>
 									<button type="button" id="cartIdNull" class="btn btn-info">장바구니</button>
+									<button type="button" id="cartIdNull" class="btn btn-info">주문하기</button>
 													
 								<%
 									}else{
 								%>
 									  <button type="button" id="cart" class="btn btn-info">장바구니</button>
+									  <button type="button" id="cartOrder" class="btn btn-info">주문하기</button>
 								<%
 									}
 								%>
-							
-							  <a href="/KAKAO/main/order.jsp?prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info">주문하기</button></a>
-							  <input type="hidden" name="job" value="add">
+							  <input type="hidden" name="job" id="job" value="add">
 							</div>
 						</div>
 					</form>
-					
+
 						<hr style="height: 1px;">
 						<%
 						if(bean.getInfo()!=null){

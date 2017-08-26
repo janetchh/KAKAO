@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kakao.bean.ProductOrderBean">
+	<insert id="orderInsert" parameterType="order">
+		INSERT INTO PRODUCTORDER(ordernumber,id,name,email,tel,address,orderinfo,picture,proname,price,count,ordertime) 
+		VALUES(#{ordernumber},#{id},#{name},#{email},#{tel},
+		#{address},#{orderinfo},#{picture},#{proname},#{price},#{count},#{ordertime})
+	</insert>
+	<select id="orderSelect" parameterType="java.lang.String" resultType="order">
+		SELECT * FROM PRODUCTORDER WHERE ID=#{id}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+

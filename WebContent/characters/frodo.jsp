@@ -107,27 +107,35 @@ div.desc {
 			<%
 				for( ProductBean bean : list ){
 			%>
+			<form action="/KAKAO/main/order.jsp" method="get" >		
+				<input type="hidden" name="job" value="product">	
 				<div class="gallery" style="height: 100%;">
 					<a href="/KAKAO/main/productInfo.jsp?prono=<%=bean.getProno()%>"> <img src="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype() %>/<%=bean.getMainimg() %>" width="600" height="400" >
 					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
 					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=NumberFormat.getInstance().format( bean.getPrice() )%></label><br>
 					</a>
 					<a href=""><button type="button" class="btn btn-info">찜하기</button></a>		
+					<input type="hidden" name="proname" value="<%=bean.getProname() %>">
+					<input type="hidden" name="picture" value="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype() %>/<%=bean.getMainimg() %>"> 
+					<input type="hidden" name="price" value="<%=bean.getPrice()%>"> 
+					<input type="hidden" name="count" value="1"> 
+					
 					<%
-					String id = (String)session.getAttribute("id");
+						String id = (String)session.getAttribute("id");
 						if(id==null){
 					%>
 						<a href="/KAKAO/main/login.jsp?state=idNull"><button type="button" class="btn btn-info">장바구니</button></a>
-										
+						<a href="/KAKAO/main/login.jsp?state=idNull"><button type="button" class="btn btn-info">주문하기</button></a>			
 					<%
 						}else{
 					%>
 						<a href="/KAKAO/main/cartList.jsp?job=add&prono=<%=bean.getProno()%>&count=1"><button type="button" class="btn btn-info">장바구니</button></a>
+						<button type="submit" class="btn btn-info">주문하기</button>
 					<%
 						}
 					%>
-					<a href=""><button type="button" class="btn btn-info">주문하기</button></a>						
 					</div>
+				</form>
 			<%
 				}
 			%>		

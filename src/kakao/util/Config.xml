@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="kakao.bean.KakaoBean" alias="kakao"/>
     	<typeAlias type="kakao.bean.MemberBean" alias="member"/>
     	<typeAlias type="kakao.bean.ProductBean" alias="product"/>
+    	<typeAlias type="kakao.bean.ProductOrderBean" alias="order"/>
     </typeAliases>
     <environments default="development">
       <environment id="development">
@@ -63,6 +64,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="kakao/xml/kakao.xml"/>
       <mapper resource="kakao/xml/Member.xml"/>
       <mapper resource="kakao/xml/Product.xml"/>
+      <mapper resource="kakao/xml/Mypage.xml"/>
     </mappers>
 </configuration>
 

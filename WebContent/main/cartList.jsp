@@ -121,6 +121,7 @@
 		</h2>
 
 		<form action="/KAKAO/main/order.jsp" method="get" id="cartListFrm">
+			<input type="hidden" name="job" value="cartList">
 			<%
 			if(cartList!=null){
 				for (ProductBean productBean : cartList) {

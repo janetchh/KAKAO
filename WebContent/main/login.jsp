@@ -67,7 +67,7 @@
 				<div class="input-group">
 					<div class="difPadding"><input type="text" name="id" class="form-control" placeholder="카카오아이디"></div>
 					<div class="difPadding"><input type="password" name="pw" class="form-control" placeholder="비밀번호(4~16자리)"></div>
-					<div class="padding"><input type="checkbox" name="idSave">카카오아이디 저장</div>
+					<!-- <div class="padding"><input type="checkbox" name="idSave">카카오아이디 저장</div> -->
 					<div class="padding"><button type="button" name="loginBtn" class="btn btn-info" style="width: 196px;">로그인</button></div>
 				</div>
 			<hr style="width: 450px; margin-top: 50px;">

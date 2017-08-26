@@ -84,41 +84,58 @@ textarea{
 </head>
 <body>
 	<%
-		String [] proname = request.getParameterValues("proname");
-		String [] picture = request.getParameterValues("picture");
-		String [] totalPrice = request.getParameterValues("totalPrice");
-		String [] totalCount = request.getParameterValues("totalCount");
+		String job = request.getParameter("job");
+		ArrayList<AddToCartBean> cartList = new ArrayList<AddToCartBean>();
 		int cartListPrice = 0; 
 		
-		ArrayList<AddToCartBean> cartList = new ArrayList<AddToCartBean>();
-
-	
-		int [] priceArr = new int[totalPrice.length];
-		for(int i=0; i<totalPrice.length;i++){
-			priceArr[i]=Integer.parseInt(totalPrice[i]);
-			cartListPrice+=priceArr[i];
-		}
-		int [] countArr = new int[totalCount.length];
-		for(int i=0; i<totalCount.length;i++){
-			countArr[i]=Integer.parseInt(totalCount[i]);
-		}
+		if(job.equals("cartList")){
+			
+			String [] proname = request.getParameterValues("proname");
+			String [] picture = request.getParameterValues("picture");
+			String [] totalPrice = request.getParameterValues("totalPrice");
+			String [] totalCount = request.getParameterValues("totalCount");
 		
-		
-		for(int i=0 ; i < proname.length ; i++){
+			int [] priceArr = new int[totalPrice.length];
+			for(int i=0; i<totalPrice.length;i++){
+				priceArr[i]=Integer.parseInt(totalPrice[i]);
+				cartListPrice+=priceArr[i];
+			}
+			int [] countArr = new int[totalCount.length];
+			for(int i=0; i<totalCount.length;i++){
+				countArr[i]=Integer.parseInt(totalCount[i]);
+			}
+			
+			for(int i=0 ; i < proname.length ; i++){
+				AddToCartBean bean = new AddToCartBean();
+				bean.setProname(proname[i]);
+				bean.setPicture(picture[i]);
+				bean.setTotalPrice(priceArr[i]);
+				bean.setTotalCount(countArr[i]);
+				cartList.add(bean);
+			}
+			
+		}else if(job.equals("product")){
+			
+			String proname = request.getParameter("proname");
+			String picture = request.getParameter("picture");
+			String price = request.getParameter("price");
+			String count = request.getParameter("count");
+			
 			AddToCartBean bean = new AddToCartBean();
-			bean.setProname(proname[i]);
-			bean.setPicture(picture[i]);
-			bean.setTotalPrice(priceArr[i]);
-			bean.setTotalCount(countArr[i]);
+			bean.setProname(proname);
+			bean.setPicture(picture);
+			bean.setTotalPrice(Integer.parseInt(price));
+			bean.setTotalCount(Integer.parseInt(count));
 			cartList.add(bean);
+			cartListPrice = Integer.parseInt(price)*Integer.parseInt(count);
+			
 		}
-		
 	%>
 
 	<jsp:include page="header.jsp" />
 	<img alt="cartList" src="/KAKAO/img/orderFont.png" style="width: 100%; height: 100%;">
 	<br><br><br>
-	<form action="final.jsp" method="post" id="orderFrm">
+	<form action="final.jsp" method="get" id="orderFrm">
 		<!-- 중앙 div 태그 -->
 		<div class="rowmainDiv">
 	
@@ -176,7 +193,7 @@ textarea{
 						<div class="form-group sendInfoDiv leftDivs">
 							<label for="inputcomment" class="col-sm-2 control-label" style="padding-left: 0px;padding-right: 0px;">배송메모</label>
 							<div class="col-sm-10">
-								<textarea class="form-control" name="comment" rows="5"  placeholder="배송메모"></textarea>
+								<textarea class="form-control" name="orderinfo" rows="5"  placeholder="배송메모"></textarea>
 							</div>
 							<br>
 						</div>
@@ -204,6 +221,10 @@ textarea{
 									<div class="col-md-8" style="padding: 5px;"><label ><%=bean.getProname() %></label></div>
 									<div class="col-md-4" style="padding: 5px;"><label class="onePrice" >금액 : <%=NumberFormat.getInstance().format(bean.getTotalPrice() )%>원</label></div>
 									<div class="col-md-2" style="padding: 5px;"><label class="oneCount" >수량 : <%=bean.getTotalCount() %>개</label></div>
+									<input type="hidden" value="<%=bean.getPicture() %>" name="picture">
+									<input type="hidden" value="<%=bean.getProname() %>" name="proname">
+									<input type="hidden" value="<%=bean.getTotalPrice() %>" name="price">
+									<input type="hidden" value="<%=bean.getTotalCount() %>" name="count">
 								</div>
 							</div>
 							<%
