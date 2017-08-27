@@ -1,3 +1,6 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="kakao.bean.WishBean"%>
+<%@page import="kakao.dao.MypageDao"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="kakao.bean.ProductBean"%>
 <%@page import="java.util.List"%>
@@ -99,18 +102,49 @@ div.desc {
 			$("a#fashionAccessory").attr("class","active");
 		}
 		
+		$("button#wishBtn").click(function(){
+			alert("선택하신 상품이 찜리스트에 추가되었습니다:)");
+		});
+		
 	});
 </script>
 </head>
 <body>
 	<jsp:include page="/main/header.jsp" />
 	
-	
 	<%
 		request.setCharacterEncoding("UTF-8");
+		String id = (String)session.getAttribute("id");
 		ProductDao dao = new ProductDao();
+		MypageDao mypageDao = new MypageDao();
 		List<ProductBean> list = null;
 		String subtype= request.getParameter("subtype");
+		
+		String job = request.getParameter("job");
+		
+		/* 찜목록추가 */
+		if(job!=null && job.equals("wish")){
+			String prono = request.getParameter("prono");
+			
+			HashMap<String,String> map = new HashMap<>();
+			map.put("id", id);
+			map.put("prono", prono);
+			
+			WishBean wishListbean = mypageDao.wishSelectOne(map);
+			if(wishListbean==null){
+					ProductBean productBean =  (ProductBean)dao.selectOne(prono);
+					WishBean wishBean = new WishBean();
+					wishBean.setIdProno(id+prono);
+					wishBean.setId(id);
+					wishBean.setProno(prono);
+					wishBean.setProname(productBean.getProname());
+					wishBean.setPicture("/KAKAO/img/"+productBean.getType()+"/"+productBean.getMainimg());
+					wishBean.setPrice(productBean.getPrice());
+					wishBean.setCount(Integer.parseInt("1"));
+					mypageDao.wishInsert(wishBean);
+			} 
+		}
+		
 		if(subtype!=null){
 			list = dao.selectList(subtype);
 	%>
@@ -127,6 +161,7 @@ div.desc {
 
 	<%
 		}
+	
 	%>
 	
 	<!--세부카테고리  -->
@@ -154,20 +189,22 @@ div.desc {
 					<label style="color: #316a7b; font-size:18px;  padding-top: 15px; padding-bottom: 5px;"><%=bean.getProname() %></label><br>
 					<label style="color: #316a7b; font-size:18px; padding-bottom: 10px;"><%=NumberFormat.getInstance().format( bean.getPrice() )%></label><br>
 					</a>
-					<a href=""><button type="button" class="btn btn-info">찜하기</button></a>		
 					<input type="hidden" name="proname" value="<%=bean.getProname() %>">
 					<input type="hidden" name="picture" value="/KAKAO/img/잡화/<%=bean.getMainimg()%>"> 
 					<input type="hidden" name="price" value="<%=bean.getPrice()%>"> 
 					<input type="hidden" name="count" value="1"> 
+					
 				<%
-					String id = (String)session.getAttribute("id");
+					
 					if(id==null){
 				%>
+					<a href="/KAKAO/main/login.jsp?state=idNull"><button type="button" class="btn btn-info">찜하기</button></a>		
 					<a href="/KAKAO/main/login.jsp?state=idNull"><button type="button" class="btn btn-info">장바구니</button></a>
 					<a href="/KAKAO/main/login.jsp?state=idNull"><button type="button" class="btn btn-info">주문하기</button></a>		
 				<%
 					}else{
 				%>
+					<a href="/KAKAO/category/accessory.jsp?job=wish&prono=<%=bean.getProno()%>"><button type="button" class="btn btn-info" id="wishBtn">찜하기</button></a>
 					<a href="/KAKAO/main/cartList.jsp?job=add&prono=<%=bean.getProno()%>&count=1"><button type="button" class="btn btn-info">장바구니</button></a>
 					<button type="submit" class="btn btn-info">주문하기</button>		
 				<%

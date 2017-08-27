@@ -187,7 +187,7 @@ body {
 			%>
 				<a href="/KAKAO/main/cartList.jsp?job=direct">장바구니</a>
 				<a href="/KAKAO/main/orderList.jsp">주문내역</a> 
-				<a href="#">찜</a> 
+				<a href="/KAKAO/main/wishList.jsp">찜</a> 
 				<a href="#">1:1문의</a> 
 				<a href="/KAKAO/main/loginProcess.jsp?state=logout" id="logout">로그아웃</a>
 			<%

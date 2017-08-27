@@ -1,3 +1,7 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="kakao.dao.MypageDao"%>
+<%@page import="kakao.bean.WishBean"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="kakao.dao.ProductDao"%>
 <%@page import="kakao.bean.ProductBean"%>
@@ -31,6 +35,13 @@
 			$("form#cartFrm").attr("action","/KAKAO/main/login.jsp?state=idNull");
 			$("form#cartFrm").submit();
 		});
+		
+		$("button#wish").click(function(){
+			$("form#cartFrm").attr("action","");
+			$("input#job").val("wish");
+			$("form#cartFrm").submit();
+			alert("선택하신 상품이 찜리스트에 추가되었습니다:)");
+		});
 	});
 </script>
 <style type="text/css">
@@ -42,9 +53,35 @@
 <body>
   <jsp:include page="header.jsp" />
   <%
+  	String id = (String)session.getAttribute("id");
   	String prono = request.getParameter("prono");
   	ProductDao dao = new ProductDao();
   	ProductBean bean = (ProductBean)dao.selectOne(prono);
+  	
+  	String job = request.getParameter("job");
+  	
+	/* 찜목록추가 */
+	if(job!=null && job.equals("wish")){
+		MypageDao mypageDao = new MypageDao();
+		
+		HashMap<String,String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("prono", prono);
+		
+		WishBean wishListbean = mypageDao.wishSelectOne(map);
+		if(wishListbean==null){
+				ProductBean productBean =  (ProductBean)dao.selectOne(prono);
+				WishBean wishBean = new WishBean();
+				wishBean.setIdProno(id+prono);
+				wishBean.setId(id);
+				wishBean.setProno(prono);
+				wishBean.setProname(productBean.getProname());
+				wishBean.setPicture("/KAKAO/img/"+productBean.getType()+"/"+productBean.getMainimg());
+				wishBean.setPrice(productBean.getPrice());
+				wishBean.setCount(Integer.parseInt("1"));
+				mypageDao.wishInsert(wishBean);
+		} 
+	}
   %>
   
 	  <div class="mainDiv">
@@ -65,19 +102,18 @@
 							  <input type="hidden" name="proname" value="<%=bean.getProname()%>">
 							  <input type="hidden" name="picture" value="/KAKAO/img/<%=bean.getType() %>/<%=bean.getSubtype()%>/<%=bean.getMainimg() %>">
 							  <input type="hidden" name="price" value="<%=bean.getPrice()%>">
-							
-							  <button type="button" id="" class="btn btn-info">찜</button>
 							  
 							   <%
-									String id = (String)session.getAttribute("id");
 									if(id==null){
 								%>
+									<button type="button" id="cartIdNull" class="btn btn-info">찜하기</button>
 									<button type="button" id="cartIdNull" class="btn btn-info">장바구니</button>
 									<button type="button" id="cartIdNull" class="btn btn-info">주문하기</button>
 													
 								<%
 									}else{
 								%>
+									  <button type="button" id="wish" class="btn btn-info">찜하기</button>
 									  <button type="button" id="cart" class="btn btn-info">장바구니</button>
 									  <button type="button" id="cartOrder" class="btn btn-info">주문하기</button>
 								<%

@@ -11,6 +11,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="orderSelect" parameterType="java.lang.String" resultType="order">
 		SELECT * FROM PRODUCTORDER WHERE ID=#{id}
 	</select>
+	
+	<insert id="wishInsert" parameterType="wish">
+		INSERT INTO WISH(idProno,id,prono,proname,picture,price,count)
+		VALUES(#{idProno},#{id},#{prono},#{proname},#{picture},#{price},#{count})
+	</insert>
+	<select id="wishSelect" parameterType="java.lang.String" resultType="wish">
+		SELECT * FROM WISH WHERE ID = #{id}
+	</select>
+	<select id="wishSelectOne" parameterType="java.util.HashMap" resultType="wish">
+		SELECT * FROM WISH WHERE ID = #{id} AND PRONO = #{prono}
+	</select>
+	<delete id="wishDelete" parameterType="java.lang.String">
+		DELETE FROM WISH WHERE IDPRONO = #{idProno}
+	</delete>
 </mapper>
 
 
