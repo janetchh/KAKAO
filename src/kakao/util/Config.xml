@@ -23,6 +23,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="kakao.bean.ProductBean" alias="product"/>
     	<typeAlias type="kakao.bean.ProductOrderBean" alias="order"/>
     	<typeAlias type="kakao.bean.WishBean" alias="wish"/>
+    	<typeAlias type="kakao.bean.QnaBean" alias="qna"/>
     </typeAliases>
     <environments default="development">
       <environment id="development">

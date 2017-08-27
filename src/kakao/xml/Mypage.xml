@@ -25,6 +25,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="wishDelete" parameterType="java.lang.String">
 		DELETE FROM WISH WHERE IDPRONO = #{idProno}
 	</delete>
+	<insert id="qnaInsert" parameterType="qna">
+		INSERT INTO QNA(id,name,email,tel,type,title,contents,regdate)
+		VALUES(#{id},#{name},#{email},#{tel},#{type},#{title},#{contents},#{regdate})
+	</insert>
+	<select id="qnaSelect" parameterType="java.lang.String" resultType="qna">
+		SELECT * FROM QNA WHERE ID = #{id}
+		ORDER BY REGDATE DESC
+	</select>
 </mapper>
 
 

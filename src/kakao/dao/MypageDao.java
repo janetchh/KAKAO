@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kakao.bean.ProductOrderBean;
+import kakao.bean.QnaBean;
 import kakao.bean.WishBean;
 import kakao.util.SqlSessionFactoryManager;
 
@@ -67,4 +68,20 @@ private SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
+	//1:1¹®ÀÇ
+	public void qnaInsert(QnaBean bean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.insert("qnaInsert", bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	
+	public List<QnaBean> qnaSelect(String id){
+		return sqlSessionFactory.openSession().selectList("qnaSelect", id);
+	}
 }

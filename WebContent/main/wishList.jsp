@@ -105,7 +105,7 @@ div.desc {
 		
 	%>
 	
-	 <img alt="accessorymain" src="/KAKAO/img/wishListFont.jpg" style="width: 100%; height: 80%;"><br><br> 
+	 <img src="/KAKAO/img/wishListFont.jpg" style="width: 100%; height: 80%;"><br><br> 
 
 	<%
 		if(list.size()==0){

@@ -198,7 +198,7 @@ textarea{
 							<br>
 						</div>
 					</div>
-				</div>
+			</div>
 	
 	
 			<!-- 오른쪽 div 태그 -->
