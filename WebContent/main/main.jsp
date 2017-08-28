@@ -1,3 +1,4 @@
+<%@page import="kakao.dao.MypageDao"%>
 <%@page import="java.util.List"%>
 <%@page import="kakao.bean.KakaoBean"%>
 <%@page import="kakao.dao.KakaoDao"%>
@@ -30,14 +31,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
-	<%-- <%
-		KakaoDao dao = new KakaoDao();
-		List<KakaoBean> list = dao.selectProduct();
-		for(int i = 0;i<list.size();i++){
-			KakaoBean bean = list.get(i);
-			out.print(bean);
-		} 
-	%> --%>
+
 	<div class="mid_contents">
 		<div class="slideContainer" style="width: 100%;">
 		  <div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -33,6 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM QNA WHERE ID = #{id}
 		ORDER BY REGDATE DESC
 	</select>
+	<select id="noticeSelect" resultType="notice">
+		select * from notice
+	</select>
 </mapper>
 
 

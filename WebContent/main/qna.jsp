@@ -64,7 +64,7 @@ button#qnaBtn{
 			
 			long time = System.currentTimeMillis(); 
 
-			SimpleDateFormat dayTime = new SimpleDateFormat("yy/MM/dd/ hh:mm:ss");
+			SimpleDateFormat dayTime = new SimpleDateFormat("yy/MM/dd hh:mm:ss");
 
 			String currentTime = dayTime.format(new Date(time));
 			
