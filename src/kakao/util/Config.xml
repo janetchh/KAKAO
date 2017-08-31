@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="kakao.bean.WishBean" alias="wish"/>
     	<typeAlias type="kakao.bean.QnaBean" alias="qna"/>
     	<typeAlias type="kakao.bean.NoticeBean" alias="notice"/>
+    	<typeAlias type="kakao.bean.FaqBean" alias="faq"/>
     </typeAliases>
     <environments default="development">
       <environment id="development">

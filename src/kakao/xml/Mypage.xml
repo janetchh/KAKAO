@@ -34,7 +34,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY REGDATE DESC
 	</select>
 	<select id="noticeSelect" resultType="notice">
-		select * from notice
+		select NO, TITLE, CONTENTS, WRITER, TO_CHAR(REGDATE,'YY/MM/DD') REGDATE, FILENAME, HIT from notice
+	</select>
+	<select id="faqSelect" resultType="faq">
+		SELECT * FROM FAQ
 	</select>
 </mapper>
 

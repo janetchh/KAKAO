@@ -106,7 +106,7 @@ button{
 	<jsp:include page="/main/header.jsp" />
 	<img src="/KAKAO/img/QuestionFont.jpg" style="width: 100%; height: 80%;"><br><br> 
 	
-	<form action="qna.jsp" method="post" id="qnaFrm">
+	<form action="qnaProcess.jsp" method="post" id="qnaFrm">
 		<input type="hidden" name="job" value="add"> 
 	<div class="row">
 		<!-- ¿ÞÂÊ °í°´ Á¤º¸ div  -->

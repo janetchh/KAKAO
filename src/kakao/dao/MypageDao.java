@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import kakao.bean.FaqBean;
 import kakao.bean.NoticeBean;
 import kakao.bean.ProductOrderBean;
 import kakao.bean.QnaBean;
@@ -88,6 +89,10 @@ private SqlSessionFactory sqlSessionFactory;
 	
 	public List<NoticeBean> noticeSelect(){
 		return sqlSessionFactory.openSession().selectList("noticeSelect");
+	}
+	
+	public List<FaqBean> faqSelect(){
+		return sqlSessionFactory.openSession().selectList("faqSelect");
 	}
 
 }

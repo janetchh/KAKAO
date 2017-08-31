@@ -48,41 +48,8 @@ button#qnaBtn{
 	<jsp:include page="/main/header.jsp" />
 	<img src="/KAKAO/img/QuestionFont.jpg" style="width: 100%; height: 80%;"><br><br> 
 	<%
-		request.setCharacterEncoding("UTF-8");
-		
 		String id = (String) session.getAttribute("id");
-		String job = request.getParameter("job");
 		MypageDao dao = new MypageDao();
-		
-		if(job!=null && job.equals("add")){
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			String tel = request.getParameter("tel");
-			String type = request.getParameter("type");
-			String title = request.getParameter("title");
-			String contents = request.getParameter("contents");
-			
-			long time = System.currentTimeMillis(); 
-
-			SimpleDateFormat dayTime = new SimpleDateFormat("yy/MM/dd hh:mm:ss");
-
-			String currentTime = dayTime.format(new Date(time));
-			
-			QnaBean bean = new QnaBean();
-			bean.setId(id);
-			bean.setName(name);
-			bean.setEmail(email);
-			bean.setTel(tel);
-			bean.setType(type);
-			bean.setTitle(title);
-			bean.setContents(contents);
-			bean.setRegdate(currentTime);
-			dao.qnaInsert(bean);
-			
-		}
-	%>
-	
-	<%
 		List<QnaBean> list = dao.qnaSelect(id);
 		if(list.size()!=0){
 			for(QnaBean qnaBean : list){

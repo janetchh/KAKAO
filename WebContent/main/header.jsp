@@ -199,12 +199,11 @@ body {
 			<button class="dropbtn">고객센터</button>
 			<div class="dropdown-content">
 				<a href="/KAKAO/main/notice.jsp">공지사항</a> 
-				<a href="#">FAQ</a>
+				<a href="/KAKAO/main/faq.jsp">FAQ</a>
 			</div>
 		</div>
 		<div class="dropdown">
-			<button class="dropbtn">매장안내</button>
-
+			<a href="/KAKAO/main/storeShop.jsp"><button class="dropbtn">매장안내</button></a>
 		</div>
 
 		<div id="searchContainer" align="center">

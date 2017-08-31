@@ -1,10 +1,6 @@
-<%@page import="kakao.bean.NoticeBean"%>
+<%@page import="kakao.bean.FaqBean"%>
 <%@page import="java.util.List"%>
-<%@page import="oracle.net.aso.r"%>
 <%@page import="kakao.dao.MypageDao"%>
-<%@page import="java.util.Date"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="kakao.bean.QnaBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -42,21 +38,21 @@ tr:hover{
 </style>
 <body>
 	<jsp:include page="/main/header.jsp" />
-	<img src="/KAKAO/img/noticeFont.jpg" style="width: 100%; height: 80%;"><br><br> 
+	<img src="/KAKAO/img/faqFont.jpg" style="width: 100%; height: 80%;"><br><br> 
 
 	<%
 		MypageDao dao = new MypageDao();
-		List<NoticeBean> list = dao.noticeSelect();
-		for(NoticeBean bean : list){
+		List<FaqBean> list = dao.faqSelect();
+		for(FaqBean bean : list){
+			System.out.println(bean);
 		%>	
-		
 
 		<div class="centerTable" align="center">
 		  <table class="noticeTb" >
 			  <tr>
 			    <th>
 				    <div class="row">
-					  <div class="col-md-10" align="left">[°øÁö]&emsp;<%=bean.getRegdate() %></div>
+					  <div class="col-md-10" align="left"><%=bean.getRegdate() %></div>
 					</div>
 			   </th>
 			  </tr>
